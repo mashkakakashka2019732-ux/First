@@ -1,0 +1,11 @@
+{
+  "name": "task-tracker-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check src/app.js && node --check test/task-model.test.js",
+    "start": "python3 -m http.server 4173"
+  }
+}

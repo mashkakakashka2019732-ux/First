@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow — трекер задач</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="app-title">
+        <div>
+          <p class="eyebrow">TaskFlow</p>
+          <h1 id="app-title">Отслеживайте задачи и доводите их до результата</h1>
+          <p class="hero__text">
+            Планируйте работу, отмечайте прогресс и быстро находите задачи по статусу, приоритету или тексту.
+          </p>
+        </div>
+        <div class="hero__card" aria-label="Сводка задач">
+          <span class="hero__number" id="completion-rate">0%</span>
+          <span class="hero__caption">выполнено</span>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="create-task-title">
+        <h2 id="create-task-title">Новая задача</h2>
+        <form id="task-form" class="task-form">
+          <label>
+            Название
+            <input id="task-title" name="title" type="text" placeholder="Например: подготовить план спринта" required />
+          </label>
+          <label>
+            Описание
+            <textarea id="task-description" name="description" rows="3" placeholder="Кратко опишите, что нужно сделать"></textarea>
+          </label>
+          <div class="task-form__row">
+            <label>
+              Приоритет
+              <select id="task-priority" name="priority">
+                <option value="high">Высокий</option>
+                <option value="medium" selected>Средний</option>
+                <option value="low">Низкий</option>
+              </select>
+            </label>
+            <label>
+              Срок
+              <input id="task-due" name="dueDate" type="date" />
+            </label>
+          </div>
+          <button class="button button--primary" type="submit">Добавить задачу</button>
+        </form>
+      </section>
+
+      <section class="dashboard" aria-label="Показатели задач">
+        <article class="metric">
+          <span id="metric-total">0</span>
+          <p>Всего</p>
+        </article>
+        <article class="metric">
+          <span id="metric-active">0</span>
+          <p>В работе</p>
+        </article>
+        <article class="metric">
+          <span id="metric-completed">0</span>
+          <p>Готово</p>
+        </article>
+        <article class="metric">
+          <span id="metric-overdue">0</span>
+          <p>Просрочено</p>
+        </article>
+      </section>
+
+      <section class="panel" aria-labelledby="tasks-title">
+        <div class="toolbar">
+          <div>
+            <p class="eyebrow">Рабочая доска</p>
+            <h2 id="tasks-title">Список задач</h2>
+          </div>
+          <div class="toolbar__controls">
+            <input id="search" type="search" placeholder="Поиск задач" aria-label="Поиск задач" />
+            <select id="status-filter" aria-label="Фильтр по статусу">
+              <option value="all">Все</option>
+              <option value="active">В работе</option>
+              <option value="completed">Выполненные</option>
+              <option value="overdue">Просроченные</option>
+            </select>
+          </div>
+        </div>
+        <ul id="task-list" class="task-list" aria-live="polite"></ul>
+        <p id="empty-state" class="empty-state" hidden>Пока задач нет. Добавьте первую задачу выше.</p>
+      </section>
+    </main>
+
+    <template id="task-template">
+      <li class="task-card">
+        <div class="task-card__main">
+          <div>
+            <h3></h3>
+            <p class="task-card__description"></p>
+          </div>
+          <span class="badge"></span>
+        </div>
+        <div class="task-card__meta"></div>
+        <div class="task-card__actions">
+          <button class="button button--ghost" data-action="toggle" type="button"></button>
+          <button class="button button--danger" data-action="delete" type="button">Удалить</button>
+        </div>
+      </li>
+    </template>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
